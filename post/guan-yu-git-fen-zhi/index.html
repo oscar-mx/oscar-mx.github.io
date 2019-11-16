@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://oscar-mx.github.io/favicon.ico?v=1573900725313">
+<link rel="shortcut icon" href="https://oscar-mx.github.io/favicon.ico?v=1573900992690">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://oscar-mx.github.io/styles/main.css">
 
@@ -36,7 +36,7 @@
   <div class="site-header">
     <div class="left">
       <a href="https://oscar-mx.github.io">
-        <img class="avatar" src="https://oscar-mx.github.io/images/avatar.png?v=1573900725313" alt="" width="32px" height="32px">
+        <img class="avatar" src="https://oscar-mx.github.io/images/avatar.png?v=1573900992690" alt="" width="32px" height="32px">
       </a>
       <a href="https://oscar-mx.github.io">
         <h1 class="site-title">一个博客</h1>
@@ -150,7 +150,7 @@ Fast-forward
 readme.md | 2 --
 1 file changed, 2 deletions(-)
 </code></pre>
-<p><code>git merge</code>命令用于合并指定分支到当前分支。合并后，刚才我们在<code>dev</code>分支的最新提交就同步到了<code>master</code>分支中。同时，可以看到<code>Fast-forward</code>这个词。 可以理解成Git直接把<code>maste</code>r指向<code>dev</code>的最新提交，因为这种情况下的合并操作没有需要解决的冲突，所以合并速度很快，这就叫做快进模式。<br>
+<p><code>git merge</code>命令用于合并指定分支到当前分支。合并后，刚才我们在<code>dev</code>分支的最新提交就同步到了<code>master</code>分支中。同时，可以看到<code>Fast-forward</code>这个词。 可以理解成Git直接把<code>master</code>指向<code>dev</code>的最新提交，因为这种情况下的合并操作没有需要解决的冲突，所以合并速度很快，这就叫做快进模式。<br>
 最后，我们删除<code>dev</code>分支：</p>
 <pre><code>$ git branch -d dev
 Deleted branch dev (was 3d7922a).
@@ -234,9 +234,10 @@ Changes not staged for commit:
 (use &quot;git checkout -- &lt;file&gt;...&quot; to discard changes in working directory)
 
         modified:   readme.md
+
+no changes added to commit (use &quot;git add&quot; and/or &quot;git commit -a&quot;)
+Dropped refs/stash@{0} (24c08595ee874d6658d8694448463eafa61cea25)
 </code></pre>
-<p>no changes added to commit (use &quot;git add&quot; and/or &quot;git commit -a&quot;)<br>
-Dropped refs/stash@{0} (24c08595ee874d6658d8694448463eafa61cea25)</p>
 <p>同样我们也可以使用<code>git stash list</code>查看当前所储藏的内容文件</p>
 <h2 id="git相关命令">Git相关命令</h2>
 <p>点击下图到Git官网查看更多知识<br>
