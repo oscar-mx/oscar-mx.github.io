@@ -1,0 +1,300 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    
+<meta charset="utf-8" >
+
+<title>关于Git 分支 | 一个博客</title>
+<meta name="description" content="记录生活，一起成长">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://oscar-mx.github.io/favicon.ico?v=1573898724447">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://oscar-mx.github.io/styles/main.css">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+      <div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="https://oscar-mx.github.io">
+        <img class="avatar" src="https://oscar-mx.github.io/images/avatar.png?v=1573898724447" alt="" width="32px" height="32px">
+      </a>
+      <a href="https://oscar-mx.github.io">
+        <h1 class="site-title">一个博客</h1>
+      </a>
+    </div>
+    <div class="right">
+      <transition name="fade">
+        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
+      </transition>
+    </div>
+  </div>
+</div>
+
+<transition name="fade">
+  <div class="menu-container" style="display: none;" v-show="menuVisible">
+    <div class="menu-list">
+      
+        
+          <a href="/" class="menu purple-link">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="menu purple-link">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="menu purple-link">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="menu purple-link">
+            关于
+          </a>
+        
+      
+        
+          <a href="/post/link" class="menu purple-link">
+            友链
+          </a>
+        
+      
+    </div>
+  </div>
+</transition>
+
+
+      <div class="content-container">
+        <div class="post-detail">
+          
+          <h2 class="post-title">关于Git 分支</h2>
+          <div class="post-info post-detail-info">
+            <span><i class="icon-calendar-outline"></i> 2019-11-16</span>
+            
+              <span>
+                <i class="icon-pricetags-outline"></i>
+                
+                  <a href="https://oscar-mx.github.io/tag/qLXUH-Kco">
+                    git
+                    
+                  </a>
+                
+              </span>
+            
+          </div>
+          <div class="post-content">
+            <blockquote>
+<p>日常编程中Git是一项必不可少的技能，本文是个人对于Git分支的一些理解和看法，文中有任何问题请给与指正！</p>
+</blockquote>
+<h2 id="分支简介">分支简介</h2>
+<p>学习Git手册得知，Git 和其它版本控制系统的主要差别在于Git<code>对待数据的方法</code>。</p>
+<ul>
+<li>Git：直接记录快照，而非差异比较。</li>
+<li>其他系统：一组基本文件和每个文件随时间逐步累积的差异。</li>
+</ul>
+<p>在进行提交操作时，Git 会保存一个提交对象（commit object）。该提交对象会包含一个指向暂存内容快照的<code>指针</code>，分支其实就是这个<code>指针</code>，多个分支就意味着<code>指针</code>是可变的。Git 的默认分支名字是 master，由 <code>git init</code> 命令所得到。</p>
+<h2 id="常规操作">常规操作</h2>
+<p>常规的分支操作有创建，切换，删除，合并。<br>
+首先，我们创建dev分支，然后切换到dev分支：</p>
+<pre><code>$ git checkout -b dev
+Switched to a new branch 'dev'
+</code></pre>
+<p><code>git checkout</code>命令加上<code>-b</code>参数表示创建并切换，相当于<code>git branch</code> 加上<code>git checkout</code>两条命令，然后我们查看分支：</p>
+<pre><code>$ git branch
+* dev
+master
+</code></pre>
+<p><code>git branch</code>命令会列出本地所有分支，当前分支前面会标一个*号,如果想要查看远程分支可以加上<code>-r</code>参数，查看所有分支加上<code>-a</code>参数，效果如下：</p>
+<pre><code>$ git branch -r
+origin/master
+$ git branch -a
+* dev
+master
+remotes/origin/master
+</code></pre>
+<p>然后，我们在新创建的<code>dev</code>分支上开发，这里假装改了一个bug，然后提交,我们假装<code>dev</code>分支已经开发完毕，现在切换到<code>master</code>分支：</p>
+<pre><code>$ git checkout master
+Switched to branch 'master'
+Your branch is up to date with 'origin/master'.
+</code></pre>
+<p>此时我们会发现之前<code>dev</code>分支修改的文件在目前的<code>master</code>分支并没有变化，之前说过多分支就相当于指针指向不同，当前 <code>master</code> 和 <code>dev</code> 分支指向不同的提交对象，这就是Git 处理分支的方式。<br>
+现在，我们把<code>dev</code>分支的代码合并到<code>master</code>分支上：</p>
+<pre><code>$ git merge dev
+Updating 4c4afe7..3d7922a
+Fast-forward
+readme.md | 2 --
+1 file changed, 2 deletions(-)
+</code></pre>
+<p><code>git merge</code>命令用于合并指定分支到当前分支。合并后，刚才我们在<code>dev</code>分支的最新提交就同步到了<code>master</code>分支中。同时，可以看到<code>Fast-forward</code>这个词。 可以理解成Git直接把<code>maste</code>r指向<code>dev</code>的最新提交，因为这种情况下的合并操作没有需要解决的冲突，所以合并速度很快，这就叫做快进模式。<br>
+最后，我们删除<code>dev</code>分支：</p>
+<pre><code>$ git branch -d dev
+Deleted branch dev (was 3d7922a).
+$ git branch
+* master
+</code></pre>
+<h2 id="解决冲突">解决冲突</h2>
+<p>有时候合并分支不会很顺利。 如果我们在两个不同的分支中，对同一文件的同一部分进行了不同的修改，Git 就没法干净的合并它们，此时就会产生冲突：</p>
+<pre><code>$ git merge dev
+Auto-merging readme.md
+CONFLICT (content): Merge conflict in readme.md
+Automatic merge failed; fix conflicts and then commit the result.
+</code></pre>
+<p>Git 提示<code>Merge conflict in readme.md</code>，这表示此文件有冲突，需要我们手动解决合并产生的冲突。 我们也可以使用 <code>git status</code> 命令查看那些因包含合并冲突而处于未合并（unmerged）状态的文件：</p>
+<pre><code>$ git status
+On branch master
+Your branch is ahead of 'origin/master' by 1 commit.
+(use &quot;git push&quot; to publish your local commits)
+
+You have unmerged paths.
+(fix conflicts and run &quot;git commit&quot;)
+(use &quot;git merge --abort&quot; to abort the merge)
+
+Unmerged paths:
+(use &quot;git add &lt;file&gt;...&quot; to mark resolution)
+
+        both modified:   readme.md
+
+no changes added to commit (use &quot;git add&quot; and/or &quot;git commit -a&quot;)
+</code></pre>
+<p>我们打开冲突文件查看问题所在：</p>
+<pre><code>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+31321321321321
+sadsadsadsa
+sadasdasdwqeqw
+=======
+564654654564
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; dev
+</code></pre>
+<p>这表示 <code>HEAD</code> 所指示的版本（也就是我们的 <code>master</code> 分支，因为在运行 <code>merge</code> 命令的时候已经检出到了这个分支）在这个区段的上半部分（======= 的上半部分），而 <code>dev</code> 分支所指示的版本在 ======= 的下半部分。 为了解决冲突，我们必须根据实际开发的情况选择两部分中的一个，或者也可以自行修改这些内容，然后提交。最后我们可以使用<code>git log</code>命令查看提交记录：</p>
+<pre><code>$ git log
+commit 9594d0c5781228e0ec1e13465cc86f9960e16d1a (HEAD -&gt; master)
+Merge: f4ce078 f40042d
+Author: oscar-mx &lt;oscarmx0912@outlook.com&gt;
+Date:   Sat Nov 16 17:18:00 2019 +0800
+
+    add
+
+commit f4ce0786df61fe4f67e07580fa124e30064618be
+Author: oscar-mx &lt;oscarmx0912@outlook.com&gt;
+Date:   Sat Nov 16 17:05:07 2019 +0800
+
+    add
+
+commit f40042d92750502fb7b62f3965dbb606c74136e3 (dev)
+Author: oscar-mx &lt;oscarmx0912@outlook.com&gt;
+Date:   Sat Nov 16 17:04:28 2019 +0800
+</code></pre>
+<p>最新的一条log就是我们刚才合并分支的记录。</p>
+<h2 id="多人开发中的分支策略">多人开发中的分支策略</h2>
+<p>实际项目开发如果是多人协作，分支的管理的使用就变得尤为重要，这里也仅仅谈下自己的看法。<br>
+个人认为的分支开发工作流是这样的：</p>
+<ul>
+<li><code>master</code> 分支上保留完全稳定的代码，比如已经发布或即将发布的代码，需要和远程同步。</li>
+<li><code>develop/dev</code>分支作为开发分支，一旦开发结束测试完毕，就可以被合并到 master 分支了，最好也和远程同步。</li>
+<li>当然，实际情况中可能会有更多的<code>特性分支</code>，比如修复bug，实现单一的功能，这种分支可能仅仅只会存在很短时间，是一种<code>短期分支</code>。</li>
+</ul>
+<h2 id="bug分支">Bug分支</h2>
+<p>开发过程中，bug很常见，严格来说，每个bug需要创建短期分支来修复，修复后，合并分支，然后将其删除。但是我在工作中经常遇到要同时负责多个分支的代码编写，工作进行一半需要临时切换分支，这时就会用到<code>git stash</code>储藏功能：</p>
+<pre><code>$ git stash
+Saved working directory and index state WIP on master: 9594d0c add
+</code></pre>
+<p>再次切换会开发分支，可以使用<code>git stash pop</code>取出之前储藏的内容,同时也会把stash内容删除：</p>
+<pre><code>$ git stash pop
+On branch master
+Your branch is ahead of 'origin/master' by 3 commits.
+(use &quot;git push&quot; to publish your local commits)
+
+Changes not staged for commit:
+(use &quot;git add &lt;file&gt;...&quot; to update what will be committed)
+(use &quot;git checkout -- &lt;file&gt;...&quot; to discard changes in working directory)
+
+        modified:   readme.md
+</code></pre>
+<p>no changes added to commit (use &quot;git add&quot; and/or &quot;git commit -a&quot;)<br>
+Dropped refs/stash@{0} (24c08595ee874d6658d8694448463eafa61cea25)</p>
+<p>同样我们也可以使用<code>git stash list</code>查看当前所储藏的内容文件</p>
+<h2 id="git相关命令">Git相关命令</h2>
+<p>点击下图到Git官网查看更多知识<br>
+<a href="https://git-scm.com/book/zh/v2" title="Git"><img src="https://git-scm.com/images/logo@2x.png" alt=""></a></p>
+<blockquote>
+<p>🤣以上就是个人对于Git分支的一些理解和看法，文中有任何问题请给与指正！<br>
+记录生活，一起成长❤️</p>
+</blockquote>
+
+          </div>
+        </div>
+
+        
+          <div class="next-post">
+            <a class="purple-link" href="https://oscar-mx.github.io/post/bu-ding-shi-tui-wen">
+              <h3 class="post-title">
+                下一篇：资讯分享01期
+              </h3>
+            </a>
+          </div>
+          
+      </div>
+
+      
+
+      <div class="site-footer">
+  <div class="slogan">记录生活，一起成长</div>
+  <div class="social-container">
+    
+      
+        <a href="https://github.com/oscar-mx" target="_blank">
+          <i class="fab fa-github"></i>
+        </a>
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+  ❤️ <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>强力驱动 | <a href="oscarmx0912@outlook.com" target="_blank">oscarmx0912@outlook.com</a> | <a class="rss" href="https://oscar-mx.github.io/atom.xml" target="_blank">RSS</a>
+</div>
+
+
+    </div>
+    <script type="application/javascript">
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+  </body>
+</html>
