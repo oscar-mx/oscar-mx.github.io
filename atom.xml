@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://oscar-mx.github.io</id>
     <title>一个博客</title>
-    <updated>2019-11-16T10:43:15.745Z</updated>
+    <updated>2019-11-30T15:50:26.915Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://oscar-mx.github.io"/>
     <link rel="self" href="https://oscar-mx.github.io/atom.xml"/>
@@ -11,6 +11,13 @@
     <icon>https://oscar-mx.github.io/favicon.ico</icon>
     <rights>All rights reserved 2019, 一个博客</rights>
     <entry>
+        <title type="html"><![CDATA[分享02期]]></title>
+        <id>https://oscar-mx.github.io/post/fen-xiang-02-qi</id>
+        <link href="https://oscar-mx.github.io/post/fen-xiang-02-qi">
+        </link>
+        <updated>2019-11-30T15:00:18.000Z</updated>
+    </entry>
+    <entry>
         <title type="html"><![CDATA[关于Git 分支]]></title>
         <id>https://oscar-mx.github.io/post/guan-yu-git-fen-zhi</id>
         <link href="https://oscar-mx.github.io/post/guan-yu-git-fen-zhi">
@@ -18,7 +25,7 @@
         <updated>2019-11-16T07:42:52.000Z</updated>
     </entry>
     <entry>
-        <title type="html"><![CDATA[资讯分享01期]]></title>
+        <title type="html"><![CDATA[分享01期]]></title>
         <id>https://oscar-mx.github.io/post/bu-ding-shi-tui-wen</id>
         <link href="https://oscar-mx.github.io/post/bu-ding-shi-tui-wen">
         </link>
