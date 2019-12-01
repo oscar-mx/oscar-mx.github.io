@@ -1,0 +1,351 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    
+<meta charset="utf-8" >
+
+<title>数据的表示之进制的转换 | 一个博客</title>
+<meta name="description" content="记录生活，一起成长">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://oscar-mx.github.io/favicon.ico?v=1575182749545">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://oscar-mx.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+      <div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="https://oscar-mx.github.io">
+        <img class="avatar" src="https://oscar-mx.github.io/images/avatar.png?v=1575182749545" alt="" width="32px" height="32px">
+      </a>
+      <a href="https://oscar-mx.github.io">
+        <h1 class="site-title">一个博客</h1>
+      </a>
+    </div>
+    <div class="right">
+      <transition name="fade">
+        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
+      </transition>
+    </div>
+  </div>
+</div>
+
+<transition name="fade">
+  <div class="menu-container" style="display: none;" v-show="menuVisible">
+    <div class="menu-list">
+      
+        
+          <a href="/" class="menu purple-link">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="menu purple-link">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="menu purple-link">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="menu purple-link">
+            关于
+          </a>
+        
+      
+        
+          <a href="/post/link" class="menu purple-link">
+            友链
+          </a>
+        
+      
+    </div>
+  </div>
+</transition>
+
+
+      <div class="content-container">
+        <div class="post-detail">
+          
+          <h2 class="post-title">数据的表示之进制的转换</h2>
+          <div class="post-info post-detail-info">
+            <span><i class="icon-calendar-outline"></i> 2019-12-01</span>
+            
+          </div>
+          <div class="post-content">
+            <blockquote>
+<p>数据表示是指被交换数据项的语法，传输期间采用的特定形式，计算机间整数、字符和文件的转换。下面主要写三部分内容，计算机小白认知，如有错误请指正。</p>
+<ul>
+<li>进制的转换</li>
+<li>原码/反码/补码/移码表示</li>
+<li>浮点数的表示</li>
+</ul>
+</blockquote>
+<h2 id="进制的转换">进制的转换</h2>
+<blockquote>
+<p>进制转换是人们利用符号来计数的方法。进制转换由一组数码符号和两个基本因素“基数”与“位权”构成。<br>
+基数是指，进位计数制中所采用的数码（数制中用来表示“量”的符号）的个数。<br>
+位权是指，进位制中每一固定位置对应的单位值。<strong>本段话摘抄于百度百科</strong></p>
+</blockquote>
+<h3 id="1-十进制转r进制短除法">1. 十进制转R进制（短除法）</h3>
+<p>R实际是一个整形数,用的比较多的如R=2(二进制),R=8(八进制),R=16(十六进制),更广泛的R可以是任意正整数,代表该进制数逢R进一，十进制即我们最常见的逢十进一。<br>
+我们通常使用短除法来进行十转R，此处R=2(二进制)，实现一个十进制整数19转二进制整数。<strong>思路：十进制数除2取余数，即十进制数除2，余数为权位上的数，得到的商值继续除2，依此步骤继续向下运算直到商为0为止，可以理解成数学的除法公式倒过来写</strong> 大概流程就是：</p>
+<pre><code>↓   19/2=商9余1 ↑
+↓   9/2=商4余1  ↑
+↓   4/2=商2余0  ↑
+↓   2/2=商1余0  ↑
+↓   1/2=商0余1  ↑
+从最后一个余数开始往回读，则十进制19转二进制结果为10011
+</code></pre>
+<h3 id="2-r进制转十进制按权展开法">2. R进制转十进制（按权展开法）</h3>
+<p>还是R=2(二进制)，实现一个二进制整数10011转十进制整数，这里使用按权展开法。<strong>思路：把二进制数按权展开、相加即得十进制数。</strong></p>
+<pre><code>10011
+1*2^4 + 0*2^3 + 0*2^2 + 1*2^1 + 1*2^0
+展开1 0 0 1 1，从右到左，共四位，权即数字乘以基数的位次方，什么进制，基数就是几，则结果为19
+</code></pre>
+<h3 id="3-二进制转八进制-转十六进制">3. 二进制转八进制、转十六进制</h3>
+<p>二进制10011转八进制，<strong>思路：3位二进制数按权展开相加得到1位八进制数。（注意事项，3位二进制转成八进制是从右到左开始转换，不足时补0）。</strong></p>
+<pre><code>10011
+010 011 //第一步取三合一，不足时补0
+0*2^2+1*2^1+0*2^0=2  0*2^2+1*2^1+1*2^0=3 //第二步按权展开求和
+23 //最后得到八进制数
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>二进制数</th>
+<th>八进制数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>000</td>
+<td>0</td>
+</tr>
+<tr>
+<td>001</td>
+<td>1</td>
+</tr>
+<tr>
+<td>010</td>
+<td>2</td>
+</tr>
+<tr>
+<td>011</td>
+<td>3</td>
+</tr>
+<tr>
+<td>100</td>
+<td>4</td>
+</tr>
+<tr>
+<td>101</td>
+<td>5</td>
+</tr>
+<tr>
+<td>110</td>
+<td>6</td>
+</tr>
+<tr>
+<td>111</td>
+<td>7</td>
+</tr>
+</tbody>
+</table>
+<p>二进制10011转十六进制，<strong>思路：与二进制转八进制方法近似，八进制是取三合一，十六进制是取四合一。（注意事项，4位二进制转成十六进制是从右到左开始转换，不足时补0）。</strong></p>
+<pre><code>10011
+0001 0011 //第一步取四合一，不足时补0
+0*2^3+0*2^2+0*2^1+1*2^0=1  0*2^3+0*2^2+1*2^1+1*2^0=3 //第二步按权展开求和
+13 //最后得到十六进制数
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>二进制数</th>
+<th>十六进制数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0000</td>
+<td>0</td>
+</tr>
+<tr>
+<td>0001</td>
+<td>1</td>
+</tr>
+<tr>
+<td>0010</td>
+<td>2</td>
+</tr>
+<tr>
+<td>0011</td>
+<td>3</td>
+</tr>
+<tr>
+<td>0100</td>
+<td>4</td>
+</tr>
+<tr>
+<td>0101</td>
+<td>5</td>
+</tr>
+<tr>
+<td>01110</td>
+<td>6</td>
+</tr>
+<tr>
+<td>0111</td>
+<td>7</td>
+</tr>
+<tr>
+<td>1000</td>
+<td>8</td>
+</tr>
+<tr>
+<td>1001</td>
+<td>9</td>
+</tr>
+<tr>
+<td>1010</td>
+<td>A</td>
+</tr>
+<tr>
+<td>1011</td>
+<td>B</td>
+</tr>
+<tr>
+<td>1100</td>
+<td>C</td>
+</tr>
+<tr>
+<td>1101</td>
+<td>D</td>
+</tr>
+<tr>
+<td>1110</td>
+<td>E</td>
+</tr>
+<tr>
+<td>1111</td>
+<td>F</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>🤣以上就是个人对进制的转换的一些理解和看法，文中有任何问题请给与指正！<br>
+记录生活，一起成长❤️</p>
+</blockquote>
+
+          </div>
+        </div>
+
+        
+          <div class="next-post">
+            <a class="purple-link" href="https://oscar-mx.github.io/post/fen-xiang-02-qi">
+              <h3 class="post-title">
+                下一篇：分享02期
+              </h3>
+            </a>
+          </div>
+          
+      </div>
+
+      
+        
+          <div id="gitalk-container"></div>
+        
+
+        
+      
+
+      <div class="site-footer">
+  <div class="slogan">记录生活，一起成长</div>
+  <div class="social-container">
+    
+      
+        <a href="https://github.com/oscar-mx" target="_blank">
+          <i class="fab fa-github"></i>
+        </a>
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+  ❤️ <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>强力驱动 | <a href="oscarmx0912@outlook.com" target="_blank">oscarmx0912@outlook.com</a> | <a class="rss" href="https://oscar-mx.github.io/atom.xml" target="_blank">RSS</a>
+</div>
+
+
+    </div>
+    <script type="application/javascript">
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '4a25c4afe1f17928ccef',
+        clientSecret: 'c284414c2a21ca8f816211b2d2f036368730073e',
+        repo: 'blog-talk',
+        owner: 'oscar-mx',
+        admin: ['oscar-mx'],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>
