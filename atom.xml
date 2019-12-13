@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://oscar-mx.github.io</id>
     <title>一个博客</title>
-    <updated>2019-12-02T13:28:56.951Z</updated>
+    <updated>2019-12-13T15:44:03.310Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://oscar-mx.github.io"/>
     <link rel="self" href="https://oscar-mx.github.io/atom.xml"/>
@@ -11,30 +11,37 @@
     <icon>https://oscar-mx.github.io/favicon.ico</icon>
     <rights>All rights reserved 2019, 一个博客</rights>
     <entry>
+        <title type="html"><![CDATA[Golang及Goland安装]]></title>
+        <id>https://oscar-mx.github.io/post/golang</id>
+        <link href="https://oscar-mx.github.io/post/golang">
+        </link>
+        <updated>2019-12-02T13:27:48.000Z</updated>
+    </entry>
+    <entry>
         <title type="html"><![CDATA[数据的表示之进制的转换]]></title>
-        <id>https://oscar-mx.github.io/post/shu-ju-de-biao-shi-zhi-jin-zhi-de-zhuan-huan</id>
-        <link href="https://oscar-mx.github.io/post/shu-ju-de-biao-shi-zhi-jin-zhi-de-zhuan-huan">
+        <id>https://oscar-mx.github.io/post/data</id>
+        <link href="https://oscar-mx.github.io/post/data">
         </link>
         <updated>2019-12-01T06:42:11.000Z</updated>
     </entry>
     <entry>
         <title type="html"><![CDATA[分享02期]]></title>
-        <id>https://oscar-mx.github.io/post/fen-xiang-02-qi</id>
-        <link href="https://oscar-mx.github.io/post/fen-xiang-02-qi">
+        <id>https://oscar-mx.github.io/post/share-02</id>
+        <link href="https://oscar-mx.github.io/post/share-02">
         </link>
         <updated>2019-11-30T15:00:18.000Z</updated>
     </entry>
     <entry>
         <title type="html"><![CDATA[关于Git 分支]]></title>
-        <id>https://oscar-mx.github.io/post/guan-yu-git-fen-zhi</id>
-        <link href="https://oscar-mx.github.io/post/guan-yu-git-fen-zhi">
+        <id>https://oscar-mx.github.io/post/branch</id>
+        <link href="https://oscar-mx.github.io/post/branch">
         </link>
         <updated>2019-11-16T07:42:52.000Z</updated>
     </entry>
     <entry>
         <title type="html"><![CDATA[分享01期]]></title>
-        <id>https://oscar-mx.github.io/post/bu-ding-shi-tui-wen</id>
-        <link href="https://oscar-mx.github.io/post/bu-ding-shi-tui-wen">
+        <id>https://oscar-mx.github.io/post/share-01</id>
+        <link href="https://oscar-mx.github.io/post/share-01">
         </link>
         <updated>2019-11-16T00:44:07.000Z</updated>
     </entry>

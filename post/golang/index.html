@@ -1,0 +1,257 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    
+<meta charset="utf-8" >
+
+<title>Golang及Goland安装 | 一个博客</title>
+<meta name="description" content="记录生活，一起成长">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://oscar-mx.github.io/favicon.ico?v=1576251834154">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://oscar-mx.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+      <div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="https://oscar-mx.github.io">
+        <img class="avatar" src="https://oscar-mx.github.io/images/avatar.png?v=1576251834154" alt="" width="32px" height="32px">
+      </a>
+      <a href="https://oscar-mx.github.io">
+        <h1 class="site-title">一个博客</h1>
+      </a>
+    </div>
+    <div class="right">
+      <transition name="fade">
+        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
+      </transition>
+    </div>
+  </div>
+</div>
+
+<transition name="fade">
+  <div class="menu-container" style="display: none;" v-show="menuVisible">
+    <div class="menu-list">
+      
+        
+          <a href="/" class="menu purple-link">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="menu purple-link">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="menu purple-link">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="menu purple-link">
+            关于
+          </a>
+        
+      
+        
+          <a href="/post/link" class="menu purple-link">
+            友链
+          </a>
+        
+      
+    </div>
+  </div>
+</transition>
+
+
+      <div class="content-container">
+        <div class="post-detail">
+          
+          <h2 class="post-title">Golang及Goland安装</h2>
+          <div class="post-info post-detail-info">
+            <span><i class="icon-calendar-outline"></i> 2019-12-02</span>
+            
+              <span>
+                <i class="icon-pricetags-outline"></i>
+                
+                  <a href="https://oscar-mx.github.io/tag/peK3tMwwV">
+                    golang
+                    
+                  </a>
+                
+              </span>
+            
+          </div>
+          <div class="post-content">
+            <h2 id="写在开头">写在开头</h2>
+<blockquote>
+<p>Golang（简称Go）语言号称<strong>兼具 Python 等动态语言的开发速度和 C/C++ 等编译型语言的性能与安全性</strong>。本文主要讲述Golang的安装，环境配置，以及Goland的安装使用</p>
+</blockquote>
+<h2 id="go运行环境安装与配置">Go运行环境安装与配置</h2>
+<p>1️⃣ 下载Go语言<br>
+国内直接到<a href="https://studygolang.com/dl">这个地址</a>下载：<br>
+然后选择符合自己操作系统的安装包进行下载，我这里是<strong>win10</strong>为例：<br>
+<img src="https://oscar-mx.github.io/post-images/1576248290050.png" alt=""></p>
+<p>2️⃣ Go语言的安装<br>
+下载好安装包后双击打开，然后就是一路无脑 Next😂，当然记得自己的<strong>安装目录</strong>，因为后面的 Golang的环境配置，会用到这个<strong>安装目录</strong>的地址，下面是安装完成后的界面：<br>
+<img src="https://oscar-mx.github.io/post-images/1576248598396.png" alt=""></p>
+<p>3️⃣ Go语言的环境变量配置（这里以我的安装位置为E:\Go举例）<br>
+win10配置环境需要有五个变量<br>
+<strong>系统变量：GOROOT、Path</strong><br>
+<strong>用户变量：GOPATH、GOBIN、Path（或者一个名称为PATH的）</strong><br>
+右键我的电脑，选择属性后，再点击高级系统设置，如下图：<br>
+<img src="https://oscar-mx.github.io/post-images/1576249149122.png" alt=""><br>
+顶部选择 高级，然后点击环境变量，如下图：<br>
+<img src="https://oscar-mx.github.io/post-images/1576249192818.png" alt=""><br>
+点击进入后，可以看到用户变量和系统变量，在下方的系统变量中，点击新建GOROOT、Path两个变量，用户变量名为：GOPATH，变量值为 在go安装目录中新建一个名称位project的文件夹，进入后新建三个文件夹，分别是src、bin、pkg这三个的文件夹的作用 ：src（存放项目源码）bin（存放编译后生成的可执行文件）pkg（存放编译后生成的包文件），如下图：<br>
+<img src="https://oscar-mx.github.io/post-images/1576249714723.png" alt=""><br>
+用户变量名为：GOBIN，变量值为之前建好的project目录下的bin目录，如下图：<br>
+<img src="https://oscar-mx.github.io/post-images/1576249719029.png" alt=""><br>
+用户变量名为：Path，变量值为安装目录下边的bin目录，如下图：<br>
+<img src="https://oscar-mx.github.io/post-images/1576249727881.png" alt=""><br>
+系统变量名为：GOROOT，变量值为 你的Go语言安装的位置，如下图：<br>
+<img src="https://oscar-mx.github.io/post-images/1576250027319.png" alt=""><br>
+系统变量名为：Path，变量值为安装目录下边的bin目录，如下图：<br>
+<img src="https://oscar-mx.github.io/post-images/1576250033212.png" alt=""></p>
+<p>4️⃣ 最后检查Go环境变量配置是否成功<br>
+Win+R 打开 运行 的窗口，输入cmd 或者直接打开 命令行提示符,出现小黑框,<br>
+先输入 go version,检查Go语言是否安装成功，<br>
+再输入 go env 检查环境变量是否配置成功，如下图三个红线，才是正确的<br>
+<img src="https://oscar-mx.github.io/post-images/1576250222087.png" alt=""></p>
+<h2 id="安装-goland当然你也可以选择vs-code-或者其他">安装 Goland，当然你也可以选择VS Code 或者其他</h2>
+<p>Goland官网下载地址：https://www.jetbrains.com/go/download/，当然这个需要激活或者免费试用30天，或者你也可以网上找找破解教程，这里就不多说了，下面直接上demo：<br>
+<img src="https://oscar-mx.github.io/post-images/1576250841063.png" alt=""><br>
+这里直接打开之前创建的GOPATH目录，src为存放项目源码目录，我新建了一个文件hello.go，<br>
+下面是代码说明：</p>
+<blockquote>
+<ul>
+<li>第 1 行，标记当前文件为 main 包，main 包也是 Go 程序的入口包。</li>
+<li>第 3 行，导入fmt 包，fmt 包实现了格式化 IO（输入/输出）的函数。</li>
+<li>第 5 行，程序执行的入口函数 main()。</li>
+<li>第 6 行，fmt.Println(...) 可以将字符串输出到控制台，并在最后自动增加换行字符 \n。</li>
+</ul>
+</blockquote>
+<p>点击绿色小三角,Run<br>
+<img src="https://oscar-mx.github.io/post-images/1576251232718.png" alt=""></p>
+<p>下面就看到程序执行的具体信息，成功输出HELLO<br>
+<img src="https://oscar-mx.github.io/post-images/1576251387257.png" alt=""></p>
+<h2 id="关于golang的一些补充">关于Golang的一些补充</h2>
+<p><a href="http://c.biancheng.net/golang/">Go语言入门教程</a><br>
+<a href="https://studygolang.com/">Go语言中文网</a><br>
+<a href="https://learnku.com/golang">LearnKu Golang技术论坛</a></p>
+<blockquote>
+<p>接下来准备多写几篇Golang的文章，记录生活，一起成长❤️</p>
+</blockquote>
+
+          </div>
+        </div>
+
+        
+          <div class="next-post">
+            <a class="purple-link" href="https://oscar-mx.github.io/post/data">
+              <h3 class="post-title">
+                下一篇：数据的表示之进制的转换
+              </h3>
+            </a>
+          </div>
+          
+      </div>
+
+      
+        
+          <div id="gitalk-container"></div>
+        
+
+        
+      
+
+      <div class="site-footer">
+  <div class="slogan">记录生活，一起成长</div>
+  <div class="social-container">
+    
+      
+        <a href="https://github.com/oscar-mx" target="_blank">
+          <i class="fab fa-github"></i>
+        </a>
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+  ❤️ <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>强力驱动 | <a href="oscarmx0912@outlook.com" target="_blank">oscarmx0912@outlook.com</a> | <a class="rss" href="https://oscar-mx.github.io/atom.xml" target="_blank">RSS</a>
+</div>
+
+
+    </div>
+    <script type="application/javascript">
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '4a25c4afe1f17928ccef',
+        clientSecret: 'c284414c2a21ca8f816211b2d2f036368730073e',
+        repo: 'blog-talk',
+        owner: 'oscar-mx',
+        admin: ['oscar-mx'],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>
