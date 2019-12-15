@@ -5,7 +5,7 @@
     
 <meta charset="utf-8" >
 
-<title>关于 | 一个博客</title>
+<title>Go变量 | 一个博客</title>
 <meta name="description" content="记录生活，一起成长">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -92,28 +92,102 @@
       <div class="content-container">
         <div class="post-detail">
           
-          <h2 class="post-title">关于</h2>
+          <h2 class="post-title">Go变量</h2>
           <div class="post-info post-detail-info">
-            <span><i class="icon-calendar-outline"></i> 2019-11-02</span>
+            <span><i class="icon-calendar-outline"></i> 2019-12-15</span>
             
           </div>
           <div class="post-content">
-            <blockquote>
-<p>欢迎来到我的小站呀，很高兴遇见你！😃</p>
+            <h2 id="go变量">Go变量</h2>
+<h3 id="1什么是变量">1.什么是变量</h3>
+<p>Go语言是静态类型语言，因此<code>变量有明确类型的</code>，编译器也会检查变量类型的正确性。从计算机系统实现角度来看，变量是一段或多段用来存储数据的内存。</p>
+<h3 id="2go变量类型">2.Go变量类型</h3>
+<p>Go语言的基本类型有：</p>
+<ul>
+<li>bool</li>
+<li>string</li>
+<li>int、int8、int16、int32、int64</li>
+<li>uint、uint8、uint16、uint32、uint64、uintptr</li>
+<li>byte // uint8 的别名</li>
+<li>rune // int32 的别名 代表一个 Unicode 码</li>
+<li>float32、float64</li>
+<li>complex64、complex128</li>
+</ul>
+<p>Go语言提供了25个关键字和此外，30 多个预定义的名字，比如 int 和 true 等不能作为变量名：</p>
+<pre><code class="language-go">//关键字
+break       default        func         interface        select
+case        defer         go           map              struct
+chan        else           goto           package          switch
+const        fallthrough    if             range            type
+continue    for             import        return            var
+//预定义字符
+true false iota nil
+
+        int int8 int16 int32 int64
+        uint uint8 uint16 uint32 uint64 uintptr
+        float32 float64 complex128 complex64
+        bool byte rune string error
+
+        make len cap new append copy close delete
+        complexrealimag
+        panic recover
+</code></pre>
+<p>同时，当一个Go变量被声明之后，<code>系统会自动赋零值</code>：如int为0，bool为false，string为空字符串等。<code>所有的内存在 Go 中都是经过初始化的。</code><br>
+变量命名一般使用驼峰式，首个单词小写，后续每个新单词首字母大写，如：helloWorld。</p>
+<h3 id="3go变量的声明">3.Go变量的声明</h3>
+<p>Go使用关键字var声明变量，格式为：</p>
+<pre><code class="language-go">var a int // var 开头，后置变量名 变量类型，结尾无须分号，变量会初始附零值，此处输出0
+var b int = 123 // 定义同时并赋值
+</code></pre>
+<p>批量声明格式为：</p>
+<pre><code class="language-go">//声明多个变量
+     	var a,b int
+
+     	var (
+     		c int
+     		d string
+     		e []float32
+     		f func() bool
+     		g struct {
+     			x int
+     		}
+     	)
+</code></pre>
+<p>简化格式为：</p>
+<pre><code class="language-go">	//简化格式定义变量   名字 := 表达式
+	//需要注意的是，简短模式（short variable declaration）有以下限制：
+	//定义变量，同时显式初始化。
+	//不能提供数据类型。
+	//只能用在函数内部。
+	a := 123
+	b,c:=1, &quot;abc&quot;
+	fmt.Println(a,b,c)
+</code></pre>
+<h3 id="3go变量转换">3.GO变量转换</h3>
+<pre><code class="language-go">    a, b := 10, 20
+
+    //可以通过多重赋值进行交换
+    a, b = b, a
+
+    fmt.Println(a)
+    fmt.Println(b)
+</code></pre>
+<blockquote>
+<p>最近在学习Golang，记录生活，一起成长❤️</p>
 </blockquote>
-<h2 id="关于本站">🏠 关于本站</h2>
-<p><strong>本站是一个个人博客，介绍完毕</strong></p>
-<h2 id="博主是谁">👨‍💻 博主是谁</h2>
-<p><strong>博主是一个小程序员，介绍完毕</strong></p>
-<h2 id="兴趣爱好">⛹ 兴趣爱好</h2>
-<p><strong>电影，体育，介绍完毕</strong></p>
-<h2 id="联系我呀">📬 联系我呀</h2>
-<p><a href="mailto:oscarmx0912@outlook.com">mailto:oscarmx0912@outlook.com</a></p>
 
           </div>
         </div>
 
         
+          <div class="next-post">
+            <a class="purple-link" href="https://oscar-mx.github.io/post/golang">
+              <h3 class="post-title">
+                下一篇：Golang及Goland安装
+              </h3>
+            </a>
+          </div>
+          
       </div>
 
       
