@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://oscar-mx.github.io/favicon.ico?v=1576376754806">
+<link rel="shortcut icon" href="https://oscar-mx.github.io/favicon.ico?v=1576388256199">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://oscar-mx.github.io/styles/main.css">
 
@@ -36,7 +36,7 @@
   <div class="site-header">
     <div class="left">
       <a href="https://oscar-mx.github.io">
-        <img class="avatar" src="https://oscar-mx.github.io/images/avatar.png?v=1576376754806" alt="" width="32px" height="32px">
+        <img class="avatar" src="https://oscar-mx.github.io/images/avatar.png?v=1576388256199" alt="" width="32px" height="32px">
       </a>
       <a href="https://oscar-mx.github.io">
         <h1 class="site-title">一个博客</h1>
@@ -113,6 +113,7 @@
 <li>float32、float64</li>
 <li>complex64、complex128</li>
 </ul>
+<h3 id="3go变量的声明">3.Go变量的声明</h3>
 <p>Go语言提供了25个关键字和此外，30 多个预定义的名字，比如 int 和 true 等不能作为变量名：</p>
 <pre><code class="language-go">//关键字
 break       default        func         interface        select
@@ -134,7 +135,6 @@ true false iota nil
 </code></pre>
 <p>同时，当一个Go变量被声明之后，<code>系统会自动赋零值</code>：如int为0，bool为false，string为空字符串等。<code>所有的内存在 Go 中都是经过初始化的。</code><br>
 变量命名一般使用驼峰式，首个单词小写，后续每个新单词首字母大写，如：helloWorld。</p>
-<h3 id="3go变量的声明">3.Go变量的声明</h3>
 <p>Go使用关键字var声明变量，格式为：</p>
 <pre><code class="language-go">var a int // var 开头，后置变量名 变量类型，结尾无须分号，变量会初始附零值，此处输出0
 var b int = 123 // 定义同时并赋值
