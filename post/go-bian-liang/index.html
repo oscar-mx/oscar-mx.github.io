@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://oscar-mx.github.io/favicon.ico?v=1576388256199">
+<link rel="shortcut icon" href="https://oscar-mx.github.io/favicon.ico?v=1576504745760">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://oscar-mx.github.io/styles/main.css">
 
@@ -36,7 +36,7 @@
   <div class="site-header">
     <div class="left">
       <a href="https://oscar-mx.github.io">
-        <img class="avatar" src="https://oscar-mx.github.io/images/avatar.png?v=1576388256199" alt="" width="32px" height="32px">
+        <img class="avatar" src="https://oscar-mx.github.io/images/avatar.png?v=1576504745760" alt="" width="32px" height="32px">
       </a>
       <a href="https://oscar-mx.github.io">
         <h1 class="site-title">一个博客</h1>
@@ -163,7 +163,7 @@ var b int = 123 // 定义同时并赋值
 	b,c:=1, &quot;abc&quot;
 	fmt.Println(a,b,c)
 </code></pre>
-<h3 id="3go变量转换">3.GO变量转换</h3>
+<h3 id="4go变量转换">4.GO变量转换</h3>
 <pre><code class="language-go">    a, b := 10, 20
 
     //可以通过多重赋值进行交换
@@ -171,6 +171,60 @@ var b int = 123 // 定义同时并赋值
 
     fmt.Println(a)
     fmt.Println(b)
+</code></pre>
+<h3 id="5go变量作用域">5.Go变量作用域</h3>
+<p>Go语言会在编译时检查每个变量是否使用过，一旦出现未使用的变量，就会报编译错误。</p>
+<p>根据变量定义位置的不同，可以分为以下三个类型：</p>
+<ul>
+<li>函数内定义的变量称为局部变量</li>
+<li>函数外定义的变量称为全局变量</li>
+<li>函数定义中的变量称为形参</li>
+</ul>
+<h4 id="局部变量">局部变量</h4>
+<pre><code class="language-go">func main() { 
+    var a int = 1
+    var b int = 2
+    //声明局部变量 c 并计算 a 和 b 的和
+   //%d是一个占位符 表示输出十进制整数
+    c := a + b
+    fmt.Printf(&quot;a = %d, b = %d, c = %d\n&quot;, a, b, c)// 输出a = 1, b = 2, c = 3
+}
+</code></pre>
+<h4 id="全局变量">全局变量</h4>
+<p>函数体外声明的变量称之为全局变量，全局变量只需要在一个文件中定义，就可以在所有文件中使用，不包含这个全局变量的文件需要使用 <strong>import</strong> 关键字引入全局变量所在的源文件之后才能使用这个全局变量。<br>
+全局变量声明必须以 <strong>var</strong> 关键字开头，如果想要在外部包中使用全局变量的首字母必须大写。</p>
+<pre><code class="language-go">package main
+import &quot;fmt&quot;
+//声明全局变量
+var c int
+func main() {
+    c = 10
+    fmt.Printf(&quot;c = %d\n&quot;,c)//输出 c=10
+}
+</code></pre>
+<p>全局变量与局部变量名称可以相同，但是函数内的局部变量优先级高。</p>
+<pre><code class="language-go">package main
+import &quot;fmt&quot;
+//声明全局变量
+var a float32 = 3.14
+func main() {
+    //声明局部变量
+    var a int = 3
+    fmt.Printf(&quot;a = %d\n&quot;, a)//输出 a=3
+}
+</code></pre>
+<h4 id="形参">形参</h4>
+<p>函数名后面括号中的变量叫做形参，形式参数只在函数调用时才会生效，函数调用结束后就会被销毁，在函数未被调用时，形参并不占用实际的存储单元，也没有实际值。</p>
+<pre><code class="language-go">package main
+import &quot;fmt&quot;
+func main() {
+     add(1,2)//输出3
+}
+func add(s1 int, s2 int) {
+    sum := s1 + s2
+    fmt.Println(sum)
+}
+
 </code></pre>
 <blockquote>
 <p>最近在学习Golang，记录生活，一起成长❤️</p>
